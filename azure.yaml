@@ -1,17 +1,24 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
 
-name: ai-chat-quickstart-csharp
+name: ai-aspire-blazor-chat-quickstart-csharp
 metadata:
-  template: ai-chat-quickstart-csharp@0.1.0-beta
+  template: ai-aspire-blazor-chat-quickstart-csharp@0.1.0-beta
 requiredVersions:
     azd: ">= 1.10.0"
 services:
-  aca:
-    project: src/AIChatApp/
-    language: csharp
+  app:
+    language: dotnet
+    project: src/AspireBlazorAIChatBot.AppHost/
     host: containerapp
-    docker:
-      remoteBuild: true
+  # apiService:
+  #   language: dotnet
+  #   project: src/AspireBlazorAIChatBot.ApiService/
+  #   host: containerapp    
+  # web:
+  #   language: dotnet
+  #   project: src/AspireBlazorAIChatBot.Web/
+  #   host: containerapp        
+
 pipeline:
   variables:
     - AZURE_OPENAI_DEPLOYMENT

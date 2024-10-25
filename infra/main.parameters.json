@@ -30,7 +30,7 @@
         "value": "${AZURE_OPENAI_RESOURCE_LOCATION=eastus2}"
       },
       "openAiDeploymentCapacity": {
-        "value": "${AZURE_OPENAI_DEPLOYMENT_CAPACITY=30}"
+        "value": "${AZURE_OPENAI_DEPLOYMENT_CAPACITY=8}"
       },
       "openAiDeploymentSkuName": {
         "value": "${AZURE_OPENAI_DEPLOYMENT_SKU_NAME=Standard}"

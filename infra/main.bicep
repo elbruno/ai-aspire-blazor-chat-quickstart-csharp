@@ -65,7 +65,7 @@ var resourceToken = toLower(uniqueString(subscription().id, name, location))
 var tags = { 'azd-env-name': name }
 
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-  name: '${name}-rg'
+  name: 'rg-${name}'
   location: location
   tags: tags
 }

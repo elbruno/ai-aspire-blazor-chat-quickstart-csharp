@@ -11,9 +11,9 @@ public class ChatState
 
     public List<ChatMessage> ChatMessages { get => _chatMessages; set => _chatMessages = value; }
 
-    public ChatState(ClaimsPrincipal user, IChatClient chatClient, List<ChatMessage> chatMessages, ILoggerFactory loggerFactory)
+    public ChatState(ClaimsPrincipal user, IChatClient chatClient, List<ChatMessage> chatMessages, ILogger logger)
     {
-        _logger = loggerFactory.CreateLogger(typeof(ChatState));
+        _logger = logger; // loggerFactory.CreateLogger(typeof(ChatState));
         _chatClient = chatClient;
         ChatMessages = chatMessages;
     }

@@ -17,4 +17,4 @@ function Set-DotnetUserSecrets {
 
 # Get all of the generated env variables, and store them as user secrets for the project
 $lines = (azd env get-values) -split "`n"
-Set-DotnetUserSecrets -path "./src/AIChatApp/" -lines $lines
+Set-DotnetUserSecrets -path "./src/AspireBlazorAIChatBot.AppHost/" -lines $lines

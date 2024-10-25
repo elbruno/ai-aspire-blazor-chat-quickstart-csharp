@@ -10,6 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add service defaults & Aspire components.
 builder.AddServiceDefaults();
 
+// Add logging with detailed information
+builder.Services.AddLogging();
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+builder.Logging.AddEventSourceLogger();
+builder.Logging.AddFilter("Microsoft", LogLevel.Information);
+builder.Logging.AddFilter("System", LogLevel.Information);
+builder.Logging.AddFilter("AspireBlazorAIChatBot", LogLevel.Debug);
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
@@ -23,12 +33,23 @@ builder.Services.AddHttpClient<WeatherApiClient>(client =>
         client.BaseAddress = new("https+http://apiservice");
     });
 
+builder.Services.AddSingleton<ILogger>(static serviceProvider =>
+{
+    var lf = serviceProvider.GetRequiredService<ILoggerFactory>();
+    return lf.CreateLogger(typeof(Program));
+});
+
 // register chat client
 builder.Services.AddSingleton<IChatClient>(static serviceProvider =>
 {
     var config = serviceProvider.GetRequiredService<IConfiguration>();
+
+    var logger = serviceProvider.GetRequiredService<ILogger>();
+    logger.LogInformation("AZURE_OPENAI_ENDPOINT: {0}", config["AZURE_OPENAI_ENDPOINT"]);
+    logger.LogInformation("AZURE_OPENAI_DEPLOYMENT: {0}", config["AZURE_OPENAI_DEPLOYMENT"]);
+
     return new AzureOpenAIClient(
-        new Uri(config["AZURE_OPENAI_ENDPOINT"]!), 
+        new Uri(config["AZURE_OPENAI_ENDPOINT"]!),
         new Azure.Identity.DefaultAzureCredential())
             .AsChatClient(modelId: config["AZURE_OPENAI_DEPLOYMENT"]!);
 
@@ -44,7 +65,7 @@ builder.Services.AddSingleton<IChatClient>(static serviceProvider =>
 // register chat nessages
 builder.Services.AddSingleton<List<ChatMessage>>(static serviceProvider =>
 {
-    return new List<ChatMessage>() 
+    return new List<ChatMessage>()
     { new ChatMessage(ChatRole.System, "You are a useful assistant that replies using short and precise sentences.")};
 });
 

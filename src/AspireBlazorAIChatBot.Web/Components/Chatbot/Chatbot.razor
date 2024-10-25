@@ -6,7 +6,7 @@
 @inject NavigationManager Nav
 
 @inject AuthenticationStateProvider AuthenticationStateProvider
-@inject ILoggerFactory LoggerFactory
+@inject ILogger Logger
 @inject IServiceProvider ServiceProvider
 
 <div class="floating-pane">
@@ -56,7 +56,7 @@
         if (chatClient is not null)
         {
             AuthenticationState auth = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-            chatState = new ChatState(auth.User, chatClient, chatMessages, LoggerFactory);
+            chatState = new ChatState(auth.User, chatClient, chatMessages, Logger);
         }
         else
         {
