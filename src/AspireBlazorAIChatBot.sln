@@ -10,8 +10,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireBlazorAIChatBot.Web",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireBlazorAIChatBot.AppHost", "AspireBlazorAIChatBot.AppHost\AspireBlazorAIChatBot.AppHost.csproj", "{E99344ED-CF73-4831-92DB-07C5F5DBF775}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.CommunityToolkit.Hosting.Ollama", "Aspire.CommunityToolkit.Hosting.Ollama\Aspire.CommunityToolkit.Hosting.Ollama.csproj", "{FB6432D2-0FE0-45F8-BEEE-63D18C35D3EC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,10 +32,6 @@ Global
 		{E99344ED-CF73-4831-92DB-07C5F5DBF775}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E99344ED-CF73-4831-92DB-07C5F5DBF775}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E99344ED-CF73-4831-92DB-07C5F5DBF775}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB6432D2-0FE0-45F8-BEEE-63D18C35D3EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB6432D2-0FE0-45F8-BEEE-63D18C35D3EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB6432D2-0FE0-45F8-BEEE-63D18C35D3EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB6432D2-0FE0-45F8-BEEE-63D18C35D3EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

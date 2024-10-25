@@ -11,11 +11,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Aspire.Hosting.AppHost" Version="8.2.2" />
+	  <Compile Include="..\VolumeNameGenerator.cs" Link="VolumeNameGenerator.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Aspire.CommunityToolkit.Hosting.Ollama\Aspire.CommunityToolkit.Hosting.Ollama.csproj" />
+		<PackageReference Include="Aspire.Hosting.AppHost" Version="8.2.2" />
+		<PackageReference Include="OllamaSharp" Version="3.0.7" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\AspireBlazorAIChatBot.ApiService\AspireBlazorAIChatBot.ApiService.csproj" />
 		<ProjectReference Include="..\AspireBlazorAIChatBot.Web\AspireBlazorAIChatBot.Web.csproj" />
 	</ItemGroup>
