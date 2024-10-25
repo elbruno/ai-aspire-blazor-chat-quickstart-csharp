@@ -1,9 +1,6 @@
 using AspireBlazorAIChatBot.Web;
 using AspireBlazorAIChatBot.Web.Components;
-using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
-using Microsoft.Extensions.DependencyInjection;
-using System.ClientModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,25 +38,18 @@ builder.Services.AddSingleton<ILogger>(static serviceProvider =>
 
 // register chat client
 builder.Services.AddSingleton<IChatClient>(static serviceProvider =>
-{
-    var config = serviceProvider.GetRequiredService<IConfiguration>();
-
+{    
     var logger = serviceProvider.GetRequiredService<ILogger>();
-    logger.LogInformation("AZURE_OPENAI_ENDPOINT: {0}", config["AZURE_OPENAI_ENDPOINT"]);
-    logger.LogInformation("AZURE_OPENAI_DEPLOYMENT: {0}", config["AZURE_OPENAI_DEPLOYMENT"]);
+    var config = serviceProvider.GetRequiredService<IConfiguration>();
+    var ollamaCnnString = config.GetConnectionString("ollama");
+    var defaultLLM = config["Aspire:OllamaSharp:ollama:Models:0"];
 
-    return new AzureOpenAIClient(
-        new Uri(config["AZURE_OPENAI_ENDPOINT"]!),
-        new Azure.Identity.DefaultAzureCredential())
-            .AsChatClient(modelId: config["AZURE_OPENAI_DEPLOYMENT"]!);
+    logger.LogInformation("Ollama connection string: {0}", ollamaCnnString);
+    logger.LogInformation("Default LLM: {0}", defaultLLM);
 
-    // var endpoint = config["AZURE_OPENAI_ENDPOINT"];
-    // var modelId = config["AZURE_OPENAI_MODEL"];
-    // var apiKey = config["AZURE_OPENAI_APIKEY"];
-    // var credential = new ApiKeyCredential(apiKey);
-    // return new AzureOpenAIClient(new Uri(endpoint), credential)
-    //     .AsChatClient(modelId: modelId);
+    IChatClient chatClient = new OllamaChatClient(new Uri(ollamaCnnString), defaultLLM);
 
+    return chatClient;
 });
 
 // register chat nessages
