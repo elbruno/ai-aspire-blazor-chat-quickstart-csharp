@@ -1,6 +1,6 @@
 {
     "name": "ai-aspire-blazor-chat-quickstart-csharp",
-    "image": "mcr.microsoft.com/devcontainers/dotnet:1-8.0",
+    "image": "mcr.microsoft.com/dotnet/sdk:8.0",
     "features": {
         "ghcr.io/devcontainers/features/azure-cli:1": {
             "installBicep": true,
@@ -25,8 +25,9 @@
                 "ms-vscode.js-debug"            ]
         }
     },
-    "postCreateCommand": "",    
-    "postAttachCommand": "./.devcontainer/post-start.sh",
+    //"postCreateCommand": "sudo chown -R vscode:vscode /workspaces/ai-aspire-blazor-chat-quickstart-csharp | ./.devcontainer/post-start.sh",
+    "postCreateCommand": "./.devcontainer/post-start.sh",
+    "postAttachCommand": "",
     "forwardPorts": [3000, 3100],
     "hostRequirements": {
         "memory": "8gb"
