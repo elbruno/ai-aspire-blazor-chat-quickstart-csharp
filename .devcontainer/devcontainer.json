@@ -1,5 +1,5 @@
 {
-    "name": "ai-chat-quickstart-csharp",
+    "name": "ai-aspire-blazor-chat-quickstart-csharp",
     "image": "mcr.microsoft.com/devcontainers/dotnet:1-8.0",
     "features": {
         "ghcr.io/devcontainers/features/azure-cli:1": {
@@ -25,9 +25,9 @@
                 "ms-vscode.js-debug"            ]
         }
     },
-    "postStartCommand": "./.devcontainer/post-start.sh",
+    "postCreateCommand": "",    
+    "postAttachCommand": "./.devcontainer/post-start.sh",
     "forwardPorts": [3000, 3100],
-    "remoteUser": "vscode",
     "hostRequirements": {
         "memory": "8gb"
     }

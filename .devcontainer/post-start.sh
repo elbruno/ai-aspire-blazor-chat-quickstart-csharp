@@ -1,4 +1,12 @@
 echo "Running post-create.sh"
+
+echo "Setting up permissions for vscode user"
+sudo chown -R vscode /workspaces
+/bin/sh -c sudo chown -R vscode:vscode /workspaces 
+sudo chmod -R u+rwX /workspaces
+echo "Permissions set"
+
+echo "Running apt-get update"
 sudo apt-get update && \
     sudo apt upgrade -y && \
     sudo apt-get install -y dos2unix libsecret-1-0 xdg-utils && \
@@ -21,8 +29,9 @@ echo "Installed dev certs"
 # build the project
 echo "Building the project [./src/AspireBlazorAIChatBot.AppHost]"
 cd ./src/AspireBlazorAIChatBot.AppHost
-dotnet build
-echo "Project built"
+sudo dotnet restore
+sudo dotnet build
+echo "Project built [./src/AspireBlazorAIChatBot.AppHost]"
 
 
 echo "Devcontainer setup complete"
