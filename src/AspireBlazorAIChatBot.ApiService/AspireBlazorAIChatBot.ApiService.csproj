@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>4d66ab52-9f18-4a53-a57d-ce9a3de01afb</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspireBlazorAIChatBot.ServiceDefaults\AspireBlazorAIChatBot.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+</Project>

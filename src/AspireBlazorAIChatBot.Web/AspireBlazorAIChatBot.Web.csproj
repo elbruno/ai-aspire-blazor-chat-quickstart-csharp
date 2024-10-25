@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>4bd24b20-cc84-492f-a929-bb7a2f1b6fe1</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Azure.AI.OpenAI" Version="2.0.0" />
+    <PackageReference Include="Azure.Identity" Version="1.12.1" />
+	  <PackageReference Include="Microsoft.Extensions.AI.AzureAIInference" Version="9.0.0-preview.9.24507.7" />
+	  <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.0.0-preview.9.24507.7" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspireBlazorAIChatBot.ServiceDefaults\AspireBlazorAIChatBot.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+</Project>
