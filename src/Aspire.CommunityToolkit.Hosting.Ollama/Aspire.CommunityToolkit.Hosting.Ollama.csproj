@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="README.md" />
+	</ItemGroup>
+
+	<ItemGroup>		
+		<PackageReference Include="Aspire.Hosting.AppHost" Version="8.2.2" />		
+		<PackageReference Include="OllamaSharp" Version="3.0.7" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\VolumeNameGenerator.cs" Link="Utils\VolumeNameGenerator.cs" />
+	</ItemGroup>
+
+</Project>
