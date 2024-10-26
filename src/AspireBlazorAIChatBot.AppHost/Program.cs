@@ -4,6 +4,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var ollama = builder.AddOllama(name: "ollama", port: null)
                     .AddModel("phi3.5")
+                    .WithOpenWebUI()
                     .WithDataVolume();
 
 var apiService = builder.AddProject<Projects.AspireBlazorAIChatBot_ApiService>("apiservice");

@@ -34,7 +34,7 @@ public class ChatState
             {
                 _logger.LogError(e, "Error getting chat completions.");
             }
-            ChatMessages.Add(new ChatMessage(ChatRole.Assistant, $"My apologies, but I encountered an unexpected error."));
+            ChatMessages.Add(new ChatMessage(ChatRole.Assistant, $"My apologies, but I encountered an unexpected error.\n{e}"));
         }
         onMessageAdded();
     }

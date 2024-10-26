@@ -10,11 +10,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
         "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21089",
-        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22065",
-        "ConnectionStrings__ollama": "https://localhost:11434"
-      },
-      "ConnectionStrings": {
-        "ollama": "http://localhost:11434"
+        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22065"
       }
     },
     "http": {
@@ -26,11 +22,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
         "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19051",
-        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20147",
-        "ConnectionStrings__ollama": "http://localhost:11434"
-      },
-      "ConnectionStrings": {
-        "ollama": "http://localhost:11434"
+        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20147"
       }
     }
   }
