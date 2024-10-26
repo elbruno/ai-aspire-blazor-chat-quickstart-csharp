@@ -2,7 +2,7 @@ using Aspire.Hosting;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var ollama = builder.AddOllama(name: "ollama", port: null)
+var ollama = builder.AddOllama(name: "ollama2", port: null)
                     .AddModel("phi3.5")
                     .WithOpenWebUI()
                     .WithDataVolume();
@@ -11,7 +11,6 @@ var apiService = builder.AddProject<Projects.AspireBlazorAIChatBot_ApiService>("
 
 builder.AddProject<Projects.AspireBlazorAIChatBot_Web>("webfrontend")
     .WithExternalHttpEndpoints()
-    .WithReference(apiService)
-    .WithReference(ollama);
+    .WithReference(apiService);
 
 builder.Build().Run();
