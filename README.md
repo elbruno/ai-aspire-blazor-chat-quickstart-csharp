@@ -5,7 +5,7 @@
 
 This repository includes a .NET/C# app, created using the .NET Aspire Starter App sample demo, that uses redis.
 
-The repository includes all the infrastructure and configuration needed to provision the solution resources and deploy the app to [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview) using the [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview). 
+The repository includes all the infrastructure and configuration needed to provision the solution resources and deploy the app to [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview) using the [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview).
 
 ***Note:** The current solution uses [.NET Aspire Community Toolkit Ollama integration](https://learn.microsoft.com/en-us/dotnet/aspire/community-toolkit/ollama?tabs=dotnet-cli%2Cdocker) to include and deploy a Phi-3.5 model without the need to install ollama locally.*
 
@@ -16,7 +16,6 @@ The repository includes all the infrastructure and configuration needed to provi
   * [GitHub Codespaces](#github-codespaces)
   * [VS Code Dev Containers](#vs-code-dev-containers)
 * [Deploying](#deploying)
-* [Development server](#development-server)
 * [Guidance](#guidance)
   * [Costs](#costs)
   * [Security Guidelines](#security-guidelines)
@@ -27,7 +26,7 @@ The repository includes all the infrastructure and configuration needed to provi
 * A [Blazor Front End](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor) that uses [Microsoft.Extensions.AI](https://devblogs.microsoft.com/dotnet/introducing-microsoft-extensions-ai-preview/) package to access language models to generate responses to user messages.
 * The Blazor Frontend app included with the .NET Aspire Starter App template, that display a chat panel to interact with the LLM.
 * [Bicep files](https://docs.microsoft.com/azure/azure-resource-manager/bicep/) for provisioning the necessary Azure resources, including Azure Container Apps, Azure Container Registry, Azure Log Analytics, and RBAC roles.
-* Using the [Phi-3.5](https://aka.ms/Phi-3CookBook) model through [Ollama](https://ollama.com/library).
+* Using the [Phi-3.5](https://aka.ms/Phi-3CookBook) model through [Ollama](https://ollama.com/library) running in a container.
 
 ![Screenshot of the chat app](/imgs/01SampleApp.png)
 
@@ -154,7 +153,7 @@ From a Terminal window, open the folder with the clone of this repo. Run the fol
 
 ***Important:** The **ollama service** is not ready yet! Follow the next steps to complete the ollama deployment.*
 
-#### Update the Ollama Service
+### Update the Ollama Service
 
 The ollama service is ready to be used, however, it does not have any model yet. When connected to the console and try to pull a model, the following error will be displayed.
 
@@ -231,13 +230,12 @@ We need to redeploy the ollama service with more system memory assigned. To modi
 
 ### Continuous deployment with GitHub Actions
 
-This project includes a Github workflow for deploying the resources to Azure
-on every push to main. That workflow requires several Azure-related authentication secrets
-to be stored as Github action secrets. To set that up, run:
+1. Create a workflow pipeline file locally. The following starters are available:
 
-```shell
-azd pipeline config
-```
+   * [Deploy with GitHub Actions](https://github.com/Azure-Samples/azd-starter-bicep/blob/main/.github/workflows/azure-dev.yml)
+   * [Deploy with Azure Pipelines](https://github.com/Azure-Samples/azd-starter-bicep/blob/main/.azdo/pipelines/azure-dev.yml)
+
+2. In the AppHost project folder, run `azd pipeline config -e <environment name>` to configure the deployment pipeline to connect securely to Azure. An environment name is specified here to configure the pipeline with a different environment for isolation purposes. Run `azd env list` and `azd env set` to reselect the default environment after this step.
 
 ## Guidance
 
