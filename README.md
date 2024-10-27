@@ -127,11 +127,7 @@ From a Terminal window, open the folder with the clone of this repo. Run the fol
 
     ![Sample console running azd init, selecting the project option and defining a new environment name](./imgs/10azdinit.png)
 
-    To describe the infrastructure and application, an `azure.yaml` was added with the AppHost directory:
-
-    ```yaml
-    - azure.yaml     # azd project configuration
-    ```
+    To describe the infrastructure and application, an `azure.yaml` was added with the AppHost directory.
 
 1. Provision and deploy all the resources:
 
@@ -139,7 +135,7 @@ From a Terminal window, open the folder with the clone of this repo. Run the fol
     azd up
     ```
 
-    It will prompt you to select a subscription from your Azure account, and select a location (like "East US 2"). Then it will provision the resources in your account and deploy the latest code. If you get an error or timeout with deployment, changing the location can help, as there may be availability constraints for the OpenAI resource.
+    It will prompt you to select a Subscription from your Azure account, and select a location (like "**East US 2**"). Then it will provision the resources in your account and deploy the latest code. If you get an error or timeout with deployment, changing the location can help.
 
 1. When `azd` has finished deploying, you'll see 5 endpoint URIs:
 
