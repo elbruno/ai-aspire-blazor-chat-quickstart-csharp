@@ -205,12 +205,29 @@ We need to redeploy the ollama service with more system memory assigned. To modi
           memory: "6.0Gi"
     ```
 
+    ***Note:** You can see a sample of the file in `.\infra\sample\ollama.tmpl.yaml`.*
 
 1. When you've made any changes to the ollama infrastructure code, let's redeploy the service:
 
     ```shell
     azd deploy ollama
     ```
+
+1. Now we can deploy the model from the chat app. Open the chat application from the published url.
+
+    In the azure portal, you can check the url from the published resource.
+
+    ![Url to open the chat sample app from the Azure Portal](./imgs/20OpenAzureWebApp.png)
+
+1. In the home page, press the `Check Model Status` button. This will start the model download if the model is not downloaded yet. And show the progress. **This process may take a couple of minutes**.
+
+    Once the model is full downloaded, the home page should display this:
+
+    ![Url to open the chat sample app from the Azure Portal](./imgs/25ChatCheckLLMStatus.png)
+
+1. Now the chat panel should be ready to interact with the user.
+
+    ![Chat sample working](./imgs/30ModelWorkinginAzure.png)
 
 ### Continuous deployment with GitHub Actions
 
