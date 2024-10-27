@@ -128,7 +128,7 @@ From a Terminal window, open the folder with the clone of this repo. Run the fol
     ![Sample console running azd init, selecting the project option and defining a new environment name](./imgs/10azdinit.png)
 
     To describe the infrastructure and application, an `azure.yaml` was added with the AppHost directory:
-    
+
     ```yaml
     - azure.yaml     # azd project configuration
     ```
