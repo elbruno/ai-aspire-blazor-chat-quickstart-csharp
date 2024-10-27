@@ -155,7 +155,7 @@ From a Terminal window, open the folder with the clone of this repo. Run the fol
 
 ### Update the Ollama Service
 
-The ollama service is ready to be used, however, it does not have any model yet. When connected to the console and try to pull a model, the following error will be displayed.
+The ollama service is ready to be use, however, it does not have any model yet. When connected to the console and try to pull a model, the following error will be displayed.
 
 ```shell
 Error: model requires more system memory (5.6 GiB) than is available (1.5 GiB)
@@ -171,7 +171,7 @@ We need to redeploy the ollama service with more system memory assigned. To modi
     azd infra synth
     ```
 
-1. After running the command some additional directories will be created:
+1. After running the command some additional directories will be created in the AppHost project directory:
 
     ```yaml
     - infra/            # Infrastructure as Code (bicep) files
@@ -181,7 +181,7 @@ We need to redeploy the ollama service with more system memory assigned. To modi
 
     In addition, for each project resource referenced by in the app host, a `containerApp.tmpl.yaml` file will be created in a directory named `manifests` next the project file. Each file contains the infrastructure as code for running the project on Azure Container Apps.
 
-    *Note*: Once you have synthesized your infrastructure to disk, changes made to your App Host will not be reflected in the infrastructure. You can re-generate the infrastructure by running `azd infra synth` again. It will prompt you before overwriting files. You can pass `--force` to force `azd infra synth` to overwrite the files without prompting.
+    ***Note**: Once you have synthesized your infrastructure to disk, changes made to your App Host will not be reflected in the infrastructure. You can re-generate the infrastructure by running `azd infra synth` again. It will prompt you before overwriting files. You can pass `--force` to force `azd infra synth` to overwrite the files without prompting.*
 
 1. Let's edit the the `ollama.tmpl.yaml` file:
 
@@ -220,7 +220,7 @@ We need to redeploy the ollama service with more system memory assigned. To modi
 
 1. In the home page, press the `Check Model Status` button. This will start the model download if the model is not downloaded yet. And show the progress. **This process may take a couple of minutes**.
 
-    Once the model is full downloaded, the home page should display this:
+1. Once the model is full downloaded, the home page should display this:
 
     ![Url to open the chat sample app from the Azure Portal](./imgs/25ChatCheckLLMStatus.png)
 
