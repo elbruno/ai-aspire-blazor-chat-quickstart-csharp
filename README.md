@@ -149,7 +149,11 @@ From a Terminal window, open the folder with the clone of this repo. Run the fol
     * service webfrontend
     * Aspire Dashboard
 
-![Console deploy complete including the endpoint URIs for service apiservice, service cache, service ollama service, service webfrontendand Aspire Dashboard](./imgs/15deployservicescomplete.png)
+    ![Console deploy complete including the endpoint URIs for service apiservice, service cache, service ollama service, service webfrontendand Aspire Dashboard](./imgs/15deployservicescomplete.png)
+
+    The Azure resource group now have the following services deployed:
+
+    ![Azure resource Group with all the services deployed](./imgs/16OllamaRAM.png)
 
 ***Important:** The **ollama service** is not ready yet! Follow the next steps to complete the ollama deployment.*
 
