@@ -137,7 +137,7 @@ From a Terminal window, open the folder with the clone of this repo. Run the fol
 
     It will prompt you to select a Subscription from your Azure account, and select a location (like "**East US 2**"). Then it will provision the resources in your account and deploy the latest code. If you get an error or timeout with deployment, changing the location can help.
 
-1. When `azd` has finished deploying, you'll see 5 endpoint URIs:
+1. When `azd up` has finished deploying, you'll see 5 deployed  URIs:
 
     * service apiservice
     * service cache
@@ -149,7 +149,7 @@ From a Terminal window, open the folder with the clone of this repo. Run the fol
 
     The Azure resource group now have the following services deployed:
 
-    ![Azure resource Group with all the services deployed](./imgs/16OllamaRAM.png)
+    ![Azure resource Group with all the services deployed](./imgs/16AzureResourceDeployComplete.png)
 
 ***Important:** The **ollama service** is not ready yet! Follow the next steps to complete the ollama deployment.*
 
