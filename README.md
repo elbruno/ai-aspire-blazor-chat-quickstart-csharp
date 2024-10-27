@@ -1,13 +1,13 @@
-# Chat Application using Azure OpenAI (C#/.NET)
+# Chat Application using Aspire and Ollama (C#/.NET)
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure-Samples/ai-chat-app-csharp)
-[![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/azure-samples/ai-chat-app-csharp)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/elbruno/ai-aspire-blazor-chat-quickstart-csharp)
+[![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/elbruno/ai-aspire-blazor-chat-quickstart-csharp)
 
-This repository includes a .NET/C# app that uses Azure OpenAI to generate responses to user messages in an .NET Aspire Starter App sample demo.
+This repository includes a .NET/C# app, created using the .NET Aspire Starter App sample demo, that uses redis.
 
-The project includes all the infrastructure and configuration needed to provision Azure OpenAI resources and deploy the app to [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview) using the [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview). By default, the app will use managed identity to authenticate with Azure OpenAI.
+The repository includes all the infrastructure and configuration needed to provision the solution resources and deploy the app to [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview) using the [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview). 
 
-We recommend first going through the [deploying steps](#deploying) before running this app locally, since the local app needs credentials for Azure OpenAI to work properly.
+***Note:** The current solution uses [.NET Aspire Community Toolkit Ollama integration](https://learn.microsoft.com/en-us/dotnet/aspire/community-toolkit/ollama?tabs=dotnet-cli%2Cdocker) to include and deploy a Phi-3.5 model without the need to install ollama locally.*
 
 * [Features](#features)
 * [Architecture diagram](#architecture-diagram)
@@ -24,11 +24,10 @@ We recommend first going through the [deploying steps](#deploying) before runnin
 
 ## Features
 
-* An [ASP.NET Core](https://dotnet.microsoft.com/en-us/apps/aspnet) that uses [Microsoft.Extensions.AI](https://devblogs.microsoft.com/dotnet/introducing-microsoft-extensions-ai-preview/) package to access language models to generate responses to user messages.
+* A [Blazor Front End](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor) that uses [Microsoft.Extensions.AI](https://devblogs.microsoft.com/dotnet/introducing-microsoft-extensions-ai-preview/) package to access language models to generate responses to user messages.
 * The Blazor Frontend app included with the .NET Aspire Starter App template, that display a chat panel to interact with the LLM.
-* [Bicep files](https://docs.microsoft.com/azure/azure-resource-manager/bicep/) for provisioning Azure resources, including Azure OpenAI, Azure Container Apps, Azure Container Registry, Azure Log Analytics, and RBAC roles.
-* Using the OpenAI gpt-4o-mini model through Azure OpenAI.
-* Support for using [local LLMs](/docs/local_ollama.md) or GitHub Models during development.
+* [Bicep files](https://docs.microsoft.com/azure/azure-resource-manager/bicep/) for provisioning the necessary Azure resources, including Azure Container Apps, Azure Container Registry, Azure Log Analytics, and RBAC roles.
+* Using the [Phi-3.5](https://aka.ms/Phi-3CookBook) model through [Ollama](https://ollama.com/library).
 
 ![Screenshot of the chat app](docs/screenshot_chatapp.png)
 

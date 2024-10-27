@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.AI;
 using System.Security.Claims;
+using System.Text;
 
 namespace AspireApp.WebApp.Chatbot;
 
@@ -39,7 +40,9 @@ public class ChatState
             {
                 _logger.LogError(e, "Error getting chat completions.");
             }
-            ChatMessages.Add(new ChatMessage(ChatRole.Assistant, $"My apologies, but I encountered an unexpected error.\n\n{e}"));
+
+            // format the exception using HTML to show the exception details in a chat panel as response
+            ChatMessages.Add(new ChatMessage(ChatRole.Assistant, $"My apologies, but I encountered an unexpected error.\n\n<p style=\"color: red\">{e}</p>"));
         }
         onMessageAdded();
     }

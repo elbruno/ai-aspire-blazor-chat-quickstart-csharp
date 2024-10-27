@@ -20,7 +20,7 @@
             {
                 if (!string.IsNullOrEmpty(message.Contents[0].ToString()))
                 {
-                    <p @key="@message" class="message message-@message.Role">@MessageProcessor.AllowImages(message.Contents[0].ToString())</p>
+                    <p @key="@message" class="message message-@message.Role">@MessageProcessor.AllowImages(message.Contents[0].ToString()!)</p>                    
                 }
             }
         }
@@ -33,6 +33,7 @@
         {
             <p class="thinking">[@Configuration["Aspire:OllamaSharp:ollama:Models:0"]] is Thinking...</p>
         }
+
     </div>
 
     <form class="chatbot-input" @onsubmit="SendMessageAsync">

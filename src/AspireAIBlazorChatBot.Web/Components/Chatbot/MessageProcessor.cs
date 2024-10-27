@@ -30,6 +30,11 @@ public static partial class MessageProcessor
         return new MarkupString(result.ToString());
     }
 
+    public static MarkupString ProcessMessageToHTML(string message)
+    {
+        return new MarkupString(message);
+    }
+
     [GeneratedRegex(@"\!?\[([^\]]+)\]\s*\(([^\)]+)\)")]
     private static partial Regex FindMarkdownImages();
 }

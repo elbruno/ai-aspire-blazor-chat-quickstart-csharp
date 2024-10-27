@@ -111,6 +111,12 @@
         color: white;
     }
 
+    .chatbot-chat .message-error {
+        background-color: #102c57;
+        margin-left: auto;
+        color: red;
+    }
+
     .chatbot-chat ::deep img {
         max-height: 10rem;
     }
