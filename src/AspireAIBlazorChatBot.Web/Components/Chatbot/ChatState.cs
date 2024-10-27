@@ -13,7 +13,7 @@ public class ChatState
 
     public ChatState(ClaimsPrincipal user, IChatClient chatClient, List<ChatMessage> chatMessages, ILogger logger)
     {
-        _logger = logger; // loggerFactory.CreateLogger(typeof(ChatState));
+        _logger = logger;
         _chatClient = chatClient;
         ChatMessages = chatMessages;
     }
@@ -25,8 +25,13 @@ public class ChatState
 
         try
         {
+            _logger.LogInformation("Sending message to chat client.");
+            _logger.LogInformation($"user Text: {userText}");
+
             var result = await _chatClient.CompleteAsync(ChatMessages);
             ChatMessages.Add(new ChatMessage(ChatRole.Assistant, result.Message.Text));
+            
+            _logger.LogInformation($"Assistant Response: {result.Message.Text}");
         }
         catch (Exception e)
         {
@@ -34,7 +39,7 @@ public class ChatState
             {
                 _logger.LogError(e, "Error getting chat completions.");
             }
-            ChatMessages.Add(new ChatMessage(ChatRole.Assistant, $"My apologies, but I encountered an unexpected error.\n{e}"));
+            ChatMessages.Add(new ChatMessage(ChatRole.Assistant, $"My apologies, but I encountered an unexpected error.\n\n{e}"));
         }
         onMessageAdded();
     }
