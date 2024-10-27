@@ -1,7 +1,44 @@
-﻿@page "/"
+﻿@rendermode @(new InteractiveServerRenderMode(prerender: false))
+@page "/"
+
+@inject IConfiguration Configuration
+
+@code {
+    string ollamaSLMName = "";
+    string ollamaModelUrl = "";
+    string ollamaUrl = "";
+
+    protected override void OnInitialized()
+    {
+        ollamaSLMName = Configuration["Aspire:OllamaSharp:ollama:Models:0"]!;
+        ollamaModelUrl = $@"https://ollama.com/library/{ollamaSLMName}";
+        ollamaUrl = Configuration.GetConnectionString("ollama")!;
+    }
+}
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
-Welcome to your new app.
+Let's test local models with Ollama!
+
+<hr />
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Model Name</th>
+            <th>Ollama Url</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <a href="@ollamaModelUrl" target="_blank">@ollamaSLMName</a>
+            </td>
+            <td>
+                <a href="@ollamaUrl" target="_blank">@ollamaUrl</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
