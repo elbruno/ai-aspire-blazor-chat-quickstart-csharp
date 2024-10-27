@@ -22,6 +22,10 @@ Let's test local models with Ollama!
         <a href="@ollamaUrl" target="_blank">@ollamaUrl</a>
     </li>
     <li class="list-group-item">
+        <strong>Ollama Model List:</strong>
+        <a href="@ollamaModelUrlModelList" target="_blank">@ollamaModelUrlModelList</a>
+    </li>
+    <li class="list-group-item">
         <button class="btn btn-primary" @onclick=PullModel>Check Model Status</button>
     </li>
     <li class="list-group-item">
@@ -33,6 +37,7 @@ Let's test local models with Ollama!
 
     string ollamaSLMName = "";
     string ollamaModelUrl = "";
+    string ollamaModelUrlModelList = "";
     string ollamaUrl = "";
     string modelStatus = "";
 
@@ -41,6 +46,7 @@ Let's test local models with Ollama!
         ollamaSLMName = Configuration["Aspire:OllamaSharp:ollama:Models:0"]!;
         ollamaModelUrl = $@"https://ollama.com/library/{ollamaSLMName}";
         ollamaUrl = Configuration.GetConnectionString("ollama")!;
+        ollamaModelUrlModelList = $@"{ollamaUrl}/api/tags";
     }
 
     async void PullModel()
