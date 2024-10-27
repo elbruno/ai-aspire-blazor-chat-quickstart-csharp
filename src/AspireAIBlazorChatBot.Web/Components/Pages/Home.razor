@@ -1,20 +1,8 @@
-﻿@rendermode @(new InteractiveServerRenderMode(prerender: false))
+﻿@rendermode InteractiveServer
 @page "/"
+@using AspireApp.WebApp.Chatbot
 
 @inject IConfiguration Configuration
-
-@code {
-    string ollamaSLMName = "";
-    string ollamaModelUrl = "";
-    string ollamaUrl = "";
-
-    protected override void OnInitialized()
-    {
-        ollamaSLMName = Configuration["Aspire:OllamaSharp:ollama:Models:0"]!;
-        ollamaModelUrl = $@"https://ollama.com/library/{ollamaSLMName}";
-        ollamaUrl = Configuration.GetConnectionString("ollama")!;
-    }
-}
 
 <PageTitle>Home</PageTitle>
 
@@ -24,21 +12,41 @@ Let's test local models with Ollama!
 
 <hr />
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Model Name</th>
-            <th>Ollama Url</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <a href="@ollamaModelUrl" target="_blank">@ollamaSLMName</a>
-            </td>
-            <td>
-                <a href="@ollamaUrl" target="_blank">@ollamaUrl</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<ul class="list-group">
+    <li class="list-group-item">
+        <strong>Model Name:</strong>
+        <a href="@ollamaModelUrl" target="_blank">@ollamaSLMName</a>
+    </li>
+    <li class="list-group-item">
+        <strong>Ollama Url:</strong>
+        <a href="@ollamaUrl" target="_blank">@ollamaUrl</a>
+    </li>
+    <li class="list-group-item">
+        <button class="btn btn-primary" @onclick=PullModel>Check Model Status</button>
+    </li>
+    <li class="list-group-item">
+        <p>@MessageProcessor.ProcessMessageToHTML(modelStatus)</p>
+    </li>
+</ul>
+
+@code {
+
+    string ollamaSLMName = "";
+    string ollamaModelUrl = "";
+    string ollamaUrl = "";
+    string modelStatus = "";
+
+    protected override void OnInitialized()
+    {
+        ollamaSLMName = Configuration["Aspire:OllamaSharp:ollama:Models:0"]!;
+        ollamaModelUrl = $@"https://ollama.com/library/{ollamaSLMName}";
+        ollamaUrl = Configuration.GetConnectionString("ollama")!;
+    }
+
+    async void PullModel()
+    {
+        var os = new OllamaApiService();
+        modelStatus = await os.PullModelAsync(ollamaUrl, ollamaSLMName);
+    }
+
+}

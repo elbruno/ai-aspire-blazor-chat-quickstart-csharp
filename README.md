@@ -29,11 +29,11 @@ The repository includes all the infrastructure and configuration needed to provi
 * [Bicep files](https://docs.microsoft.com/azure/azure-resource-manager/bicep/) for provisioning the necessary Azure resources, including Azure Container Apps, Azure Container Registry, Azure Log Analytics, and RBAC roles.
 * Using the [Phi-3.5](https://aka.ms/Phi-3CookBook) model through [Ollama](https://ollama.com/library).
 
-![Screenshot of the chat app](docs/screenshot_chatapp.png)
+![Screenshot of the chat app](/imgs/01SampleApp.png)
 
 ## Architecture diagram
 
-![Architecture diagram: Azure Container Apps inside Container Apps Environment, connected to Container Registry with Container, connected to Managed Identity for Azure OpenAI](readme_diagram.png)
+    ** Work In Progress **
 
 ## Getting started
 
@@ -46,7 +46,7 @@ You can run this template virtually by using GitHub Codespaces. The button will 
 
 1. Open the template (this may take several minutes):
 
-    [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure-Samples/ai-chat-app-csharp)
+    [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/elbruno/ai-aspire-blazor-chat-quickstart-csharp)
 
 2. Open a terminal window
 3. Continue with the [deploying steps](#deploying)
@@ -63,15 +63,11 @@ If you're not using one of the above options for opening the project, then you'l
     * [VS Code](https://code.visualstudio.com/Download) or [Visual Studio](https://visualstudio.microsoft.com/downloads/)
         * If using VS Code, install the [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
 
-2. Download the project code:
+2. Fork and Clone the current repository:
 
-    ```shell
-    azd init -t ai-chat-app-csharp
-    ```
+3. If you're using Visual Studio, open `the src/AspireAIBlazorChatBot.sln` solution file. If you're using VS Code, open the src folder.
 
-3. If you're using Visual Studio, open the src/ai-chat-quickstart.sln solution file. If you're using VS Code, open the src folder.
-
-7. Continue with the [deploying steps](#deploying).
+4. Continue with the [deploying steps](#deploying).
 
 ### VS Code Dev Containers
 
@@ -80,12 +76,11 @@ A related option is VS Code Dev Containers, which will open the project in your 
 1. Start Docker Desktop (install it if not already installed)
 2. Open the project:
 
-    [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/azure-samples/ai-chat-app-csharp)
+    [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/elbruno/ai-aspire-blazor-chat-quickstart-csharp)
 
 3. In the VS Code window that opens, once the project files show up (this may take several minutes), open a terminal window.
 
 4. Continue with the [deploying steps](#deploying)
-
 
 ## Deploying
 
@@ -96,33 +91,125 @@ Once you've opened the project in [Codespaces](#github-codespaces), in [Dev Cont
 1. Sign up for a [free Azure account](https://azure.microsoft.com/free/) and create an Azure Subscription.
 2. Check that you have the necessary permissions:
 
-    * Your Azure account must have `Microsoft.Authorization/roleAssignments/write` permissions, such as [Role Based Access Control Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#role-based-access-control-administrator-preview), [User Access Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#user-access-administrator), or [Owner](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#owner). If you don't have subscription-level permissions, you must be granted [RBAC](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#role-based-access-control-administrator-preview) for an existing resource group and [deploy to that existing group](/docs/deploy_existing.md#resource-group).
+    * Your Azure account must have `Microsoft.Authorization/roleAssignments/write` permissions, such as [Role Based Access Control Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#role-based-access-control-administrator-preview), [User Access Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#user-access-administrator), or [Owner](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#owner). If you don't have subscription-level permissions, you must be granted [RBAC](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#role-based-access-control-administrator-preview) for an existing resource group and deploy to that existing group.
     * Your Azure account also needs `Microsoft.Resources/deployments/write` permissions on the subscription level.
 
 ### Deploying with azd
 
-From a Terminal window, open the folder with the clone of this repo and run the following commands.
+From a Terminal window, open the folder with the clone of this repo. Run the following commands.
+
+1. Navigate to the .NET Aspire AppHost project:
+
+    In Windows:
+
+    ```bash
+    cd .\src\AspireAIBlazorChatBot.AppHost\
+    ```
+
+    In Mac / Linux:
+
+    ```bash
+    cd ./src/AspireAIBlazorChatBot.AppHost/
+    ```
 
 1. Login to Azure:
 
-    ```shell
+    ```bash
     azd auth login
     ```
 
-2. Provision and deploy all the resources:
+1. Init the resources for the Azure Deploy, and select the option to use the code in the current directory and define the name for the new environment. Run the command:
+
+    ```bash
+    azd init
+    ```
+
+    This image shows an example creating an environment named `aspireollamachat`.
+
+    ![Sample console running azd init, selecting the project option and defining a new environment name](./imgs/10azdinit.png)
+
+    To describe the infrastructure and application, an `azure.yaml` was added with the AppHost directory:
+    
+    ```yaml
+    - azure.yaml     # azd project configuration
+    ```
+
+1. Provision and deploy all the resources:
 
     ```shell
     azd up
     ```
 
-    It will prompt you to provide an `azd` environment name (like "chat-app"), select a subscription from your Azure account, and select a [location where OpenAI is available](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services&regions=all) (like "francecentral"). Then it will provision the resources in your account and deploy the latest code. If you get an error or timeout with deployment, changing the location can help, as there may be availability constraints for the OpenAI resource.
+    It will prompt you to select a subscription from your Azure account, and select a location (like "East US 2"). Then it will provision the resources in your account and deploy the latest code. If you get an error or timeout with deployment, changing the location can help, as there may be availability constraints for the OpenAI resource.
 
-3. When `azd` has finished deploying, you'll see an endpoint URI in the command output. Visit that URI, and you should see the chat app! 🎉
+1. When `azd` has finished deploying, you'll see 5 endpoint URIs:
 
-4. When you've made any changes to the app code, you can just run:
+    * service apiservice
+    * service cache
+    * service ollama service
+    * service webfrontend
+    * Aspire Dashboard
+
+![Console deploy complete including the endpoint URIs for service apiservice, service cache, service ollama service, service webfrontendand Aspire Dashboard](./imgs/15deployservicescomplete.png)
+
+***Important:** The **ollama service** is not ready yet! Follow the next steps to complete the ollama deployment.*
+
+#### Update the Ollama Service
+
+The ollama service is ready to be used, however, it does not have any model yet. When connected to the console and try to pull a model, the following error will be displayed.
+
+```shell
+Error: model requires more system memory (5.6 GiB) than is available (1.5 GiB)
+```
+
+![Downloading models in ollama container in Azure require more RAM](./imgs/16OllamaRAM.png)
+
+We need to redeploy the ollama service with more system memory assigned. To modify the infrastructure that `azd` uses, run `azd infra synth` to persist it to disk.
+
+1. Run the command to generate the infrastructure files.
+
+    ```bash
+    azd infra synth
+    ```
+
+1. After running the command some additional directories will be created:
+
+    ```yaml
+    - infra/            # Infrastructure as Code (bicep) files
+      - main.bicep      # main deployment module
+      - resources.bicep # resources shared across your application's services
+    ```
+
+    In addition, for each project resource referenced by in the app host, a `containerApp.tmpl.yaml` file will be created in a directory named `manifests` next the project file. Each file contains the infrastructure as code for running the project on Azure Container Apps.
+
+    *Note*: Once you have synthesized your infrastructure to disk, changes made to your App Host will not be reflected in the infrastructure. You can re-generate the infrastructure by running `azd infra synth` again. It will prompt you before overwriting files. You can pass `--force` to force `azd infra synth` to overwrite the files without prompting.
+
+1. Let's edit the the `ollama.tmpl.yaml` file:
+
+    ![Generated infrastructure files, including the ollama.tmpl.yaml](./imgs/17infrafiles.png)
+
+1. On the ollama container definition, add the necessary resources including `cpu: 3` and `memory: "6.0Gi"`.
+
+    ```yml
+    containers:
+      - image: {{ .Image }}
+        name: ollama
+        env:
+          - name: AZURE_CLIENT_ID
+            value: {{ .Env.MANAGED_IDENTITY_CLIENT_ID }}
+        volumeMounts:
+          - volumeName: ollama-aspireaiblazorchatbotapphostollamaollama
+            mountPath: /root/.ollama
+        resources:
+          cpu: 3
+          memory: "6.0Gi"
+    ```
+
+
+1. When you've made any changes to the ollama infrastructure code, let's redeploy the service:
 
     ```shell
-    azd deploy
+    azd deploy ollama
     ```
 
 ### Continuous deployment with GitHub Actions
@@ -135,36 +222,6 @@ to be stored as Github action secrets. To set that up, run:
 azd pipeline config
 ```
 
-## Development server
-
-In order to run this app, you need to either have an Azure OpenAI account deployed (from the [deploying steps](#deploying)), use a model from [GitHub models](https://github.com/marketplace/models), use the [Azure AI Model Catalog](https://learn.microsoft.com/en-us/azure/machine-learning/concept-model-catalog?view=azureml-api-2), or use a [local LLM server](/docs/local_ollama.md).
-
-After deployment, Azure OpenAI is configured for you using [User Secrets](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets). If you could not run the deployment steps here, or you want to use different models, you can manually update the settings in `appsettings.local.json`. **Important:** This file is only for local development and this sample includes it in the `.gitignore` file so changes to it will be ignored. Do not check your secure keys into source control!
-
-1. If you want to use an existing Azure OpenAI deployment, you modify the `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_DEPLOYMENT` configuration settings in the `appsettings.local.json` file. 
-
-2. For use with GitHub models, change `AIHost` to "github" in the `appsettings.local.json` file.
-
-    You'll need a `GITHUB_TOKEN` environment variable that stores a GitHub personal access token.
-    If you're running this inside a GitHub Codespace, the token will be automatically available.
-    If not, generate a new [personal access token](https://github.com/settings/tokens) and configure it in the `GITHUB_TOKEN` setting of `appsettings.local.json`:
-
-3. For use with local models, change `AIHost` to "local" in the `appsettings.local.json` file and change `LOCAL_MODELS_ENDPOINT` and `LOCAL_MODELS_NAME` to match the local server. See [local LLM server](/docs/local_ollama.md) for more information.
-
-4. To use the Azure AI Model Catalog, change `AIHost` to "azureAIModelCatalog" in the `appsettings.local.json` file. Change `AZURE_INFERENCE_KEY`, `AZURE_MODEL_NAME`, and `AZURE_MODEL_ENDPOINT` settings to match your configuration in the Azure AI Model Catalog.
-
-4. Start the project:
-
-    **If using Visual Studio**, choose the `Debug > Start Debugging` menu.
-    **If using VS Code or GitHub CodeSpaces***, choose the `Run > Start Debugging` menu.
-    Finally, if using the command line, run the following from the project directory:
-
-    ```shell
-    dotnet run
-    ```
-
-    This will start the app on port 5153, and you can access it at `http://localhost:5153`.
-
 ## Guidance
 
 ### Costs
@@ -175,7 +232,6 @@ However, Azure Container Registry has a fixed cost per registry per day.
 
 You can try the [Azure pricing calculator](https://azure.com/e/2176802ea14941e4959eae8ad335aeb5) for the resources:
 
-* Azure OpenAI Service: S0 tier, gpt-4o-mini model. Pricing is based on token count. [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)
 * Azure Container App: Consumption tier with 0.5 CPU, 1GiB memory/storage. Pricing is based on resource allocation, and each month allows for a certain amount of free usage. [Pricing](https://azure.microsoft.com/pricing/details/container-apps/)
 * Azure Container Registry: Basic tier. [Pricing](https://azure.microsoft.com/pricing/details/container-registry/)
 * Log analytics: Pay-as-you-go tier. Costs based on data ingested. [Pricing](https://azure.microsoft.com/pricing/details/monitor/)
@@ -185,7 +241,7 @@ either by deleting the resource group in the Portal or running `azd down`.
 
 ### Security Guidelines
 
-This template uses [Managed Identity](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview) for authenticating to the Azure OpenAI service.
+This template is ready to use [Managed Identity](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview) for authenticating to services like Azure OpenAI service.
 
 Additionally, we have added a [GitHub Action](https://github.com/microsoft/security-devops-action) that scans the infrastructure-as-code files and generates a report containing any detected issues. To ensure continued best practices in your own repository, we recommend that anyone creating solutions based on our templates ensure that the [Github secret scanning](https://docs.github.com/code-security/secret-scanning/about-secret-scanning) setting is enabled.
 
@@ -195,5 +251,5 @@ You may want to consider additional security measures, such as:
 
 ## Resources
 
-* [RAG chat with Azure AI Search + C#/.NET](https://github.com/Azure-Samples/azure-search-openai-demo-csharp/): A more advanced chat app that uses Azure AI Search to ground responses in domain knowledge. Includes user authentication with Microsoft Entra as well as data access controls.
+* [RAG chat with Azure AI Search + C#/.NET](https://aka.ms/ragchatnet): A more advanced chat app that uses Azure AI Search to ground responses in domain knowledge. Includes user authentication with Microsoft Entra as well as data access controls.
 * [Develop .NET Apps with AI Features](https://learn.microsoft.com/en-us/dotnet/ai/get-started/dotnet-ai-overview)
