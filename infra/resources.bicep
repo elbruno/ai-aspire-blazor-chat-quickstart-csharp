@@ -121,7 +121,7 @@ resource ollamaAspireAIBlazorChatBotAppHostOllamaOllamaStore 'Microsoft.App/mana
 }
 
 var modelId = 'azureml://registries/azureml/models/Phi-3.5-mini-instruct'
-var endpointName = 'phi35'
+var endpointName = 'Phi-3.5-mini-instruct'
 var rgName = resourceGroup().name
 
 resource phi35_endpoint 'Microsoft.MachineLearningServices/workspaces/serverlessEndpoints@2024-07-01-preview' = {
