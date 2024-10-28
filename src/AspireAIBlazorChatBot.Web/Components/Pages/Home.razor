@@ -53,6 +53,9 @@ Let's test local models with Ollama!
     {
         var os = new OllamaApiService();
         modelStatus = await os.PullModelAsync(ollamaUrl, ollamaSLMName);
+
+        // refresh the page
+        StateHasChanged();
     }
 
 }
