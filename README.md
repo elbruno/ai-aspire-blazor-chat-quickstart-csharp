@@ -276,6 +276,6 @@ You may want to consider additional security measures, such as:
 
     ![Build an AI Chat in .NET Aspire with Ollama: Quickstart Guide!](./imgs/60youtubeoverview.png)
 
-* [Build an AI Chat in .NET Aspire with Ollama: Deploy to Azure Guide!](https://www.youtube.com/watch?v=J-Vy3pKaXS0)]
+* [Build an AI Chat in .NET Aspire with Ollama: Deploy to Azure Guide!](https://www.youtube.com/watch?v=J-Vy3pKaXS0)
 
     ![Build an AI Chat in .NET Aspire with Ollama: Deploy to Azure Guide!](./imgs/61youtubedeploy.png)
