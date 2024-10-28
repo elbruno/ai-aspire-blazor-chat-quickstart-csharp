@@ -133,6 +133,8 @@ From a Terminal window, open the folder with the clone of this repo. Run the fol
 
     ![Azure resource Group with all the services deployed](./imgs/16AzureResourceDeployComplete.png)
 
+1. Open the webfrontend service url, and click on the `Check Model Status` button. This will start the download of the Phi-3.5 model. After a couple of minutes, click again and once the model is downloaded, the chat will be ready to be used.
+
 ### Aspire Deploy process overview
 
 The Azure Developer CLI (azd) has been extended to support deploying .NET Aspire projects. The following steps will help you walk through the process of deploying the current .NET Aspire project to Azure Container Apps using the Azure Developer CLI.
