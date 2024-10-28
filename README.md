@@ -7,6 +7,8 @@ This repository includes a .NET/C# app, created using the .NET Aspire Starter Ap
 
 The repository includes all the infrastructure and configuration needed to provision the solution resources and deploy the app to [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview) using the [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview).
 
+Check the resources section to find supporting videos with an overview of the project, and a step-by-step video to demo the delpoyt to Azure.
+
 ***Note:** The current solution uses [.NET Aspire Community Toolkit Ollama integration](https://learn.microsoft.com/en-us/dotnet/aspire/community-toolkit/ollama?tabs=dotnet-cli%2Cdocker) to include and deploy a Phi-3.5 model without the need to install ollama locally.*
 
 * [Features](#features)
@@ -267,4 +269,9 @@ You may want to consider additional security measures, such as:
 ## Resources
 
 * [RAG chat with Azure AI Search + C#/.NET](https://aka.ms/ragchatnet): A more advanced chat app that uses Azure AI Search to ground responses in domain knowledge. Includes user authentication with Microsoft Entra as well as data access controls.
+
 * [Develop .NET Apps with AI Features](https://learn.microsoft.com/en-us/dotnet/ai/get-started/dotnet-ai-overview)
+
+* ![Build an AI Chat in .NET Aspire with Ollama: Quickstart Guide![Build an AI Chat in .NET Aspire with Ollama: Quickstart Guide!](https://www.youtube.com/watch?v=jo1uyq-j26Y)](./imgs/60youtubeoverview.png)
+
+* ![Build an AI Chat in .NET Aspire with Ollama: Deploy to Azure Guide![Build an AI Chat in .NET Aspire with Ollama: Deploy to Azure Guide!](https://www.youtube.com/watch?v=J-Vy3pKaXS0)](./imgs/61youtubedeploy.png)
