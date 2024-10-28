@@ -4,5 +4,5 @@ name: AspireAIBlazorChatBot.AppHost
 services:  
   app:
     language: dotnet
-    project: ./src/AspireAIBlazorChatBot.AppHost.csproj
+    project: ./src/AspireAIBlazorChatBot.AppHost/AspireAIBlazorChatBot.AppHost.csproj
     host: containerapp

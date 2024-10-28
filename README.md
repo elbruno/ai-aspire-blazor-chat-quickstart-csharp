@@ -99,6 +99,35 @@ Once you've opened the project in [Codespaces](#github-codespaces), in [Dev Cont
 
 From a Terminal window, open the folder with the clone of this repo. Run the following commands.
 
+1. Login to Azure:
+
+    ```bash
+    azd auth login
+    ```
+
+1. Init the resources for the Azure Deploy, define the environmetn name. Run the command:
+
+    ```bash
+    azd init
+    ```
+1. Start the Azure Deploy process. Select the Azure Subscription and the Region (ie: **East US 2**). Run the command:
+
+    ```bash
+    azd up
+    ```
+
+1. When `azd up` has finished deploying, you'll see 5 deployed  URIs:
+
+    * service apiservice
+    * service cache
+    * service ollama service
+    * service webfrontend
+    * Aspire Dashboard
+
+### Understanding the deploy with azd from the AppHost project
+
+From a Terminal window, open the folder with the clone of this repo. Run the following commands.
+
 1. Navigate to the .NET Aspire AppHost project:
 
     In Windows:
