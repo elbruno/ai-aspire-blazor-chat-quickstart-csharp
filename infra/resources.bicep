@@ -120,6 +120,25 @@ resource ollamaAspireAIBlazorChatBotAppHostOllamaOllamaStore 'Microsoft.App/mana
   }
 }
 
+var modelId = 'azureml://registries/azureml/models/Phi-3.5-mini-instruct'
+var endpointName = 'phi35'
+var rgName = resourceGroup().name
+
+resource phi35_endpoint 'Microsoft.MachineLearningServices/workspaces/serverlessEndpoints@2024-07-01-preview' = {
+  name: endpointName
+  location: location
+  sku: {
+    name: 'Consumption'
+  }
+  properties: {
+    modelSettings: {
+      modelId: resourceId('Microsoft.MachineLearningServices/workspaces/models', modelId)
+    }
+  }
+  tags: tags
+  kind: 'Inference'
+}
+
 output MANAGED_IDENTITY_CLIENT_ID string = managedIdentity.properties.clientId
 output MANAGED_IDENTITY_NAME string = managedIdentity.name
 output MANAGED_IDENTITY_PRINCIPAL_ID string = managedIdentity.properties.principalId
@@ -132,3 +151,4 @@ output AZURE_CONTAINER_APPS_ENVIRONMENT_ID string = containerAppEnvironment.id
 output AZURE_CONTAINER_APPS_ENVIRONMENT_DEFAULT_DOMAIN string = containerAppEnvironment.properties.defaultDomain
 output SERVICE_OLLAMA_VOLUME_ASPIREAIBLAZORCHATBOTAPPHOSTOLLAMAOLLAMA_NAME string = ollamaAspireAIBlazorChatBotAppHostOllamaOllamaStore.name
 output AZURE_VOLUMES_STORAGE_ACCOUNT string = storageVolume.name
+output PHI35_ENDPOINT_URI string = phi35_endpoint.properties.inferenceEndpoint.uri
