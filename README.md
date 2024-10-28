@@ -272,6 +272,10 @@ You may want to consider additional security measures, such as:
 
 * [Develop .NET Apps with AI Features](https://learn.microsoft.com/en-us/dotnet/ai/get-started/dotnet-ai-overview)
 
-* ![Build an AI Chat in .NET Aspire with Ollama: Quickstart Guide![Build an AI Chat in .NET Aspire with Ollama: Quickstart Guide!](https://www.youtube.com/watch?v=jo1uyq-j26Y)](./imgs/60youtubeoverview.png)
+* ![Build an AI Chat in .NET Aspire with Ollama: Quickstart Guide!](./imgs/60youtubeoverview.png)
 
-* ![Build an AI Chat in .NET Aspire with Ollama: Deploy to Azure Guide![Build an AI Chat in .NET Aspire with Ollama: Deploy to Azure Guide!](https://www.youtube.com/watch?v=J-Vy3pKaXS0)](./imgs/61youtubedeploy.png)
+    [Build an AI Chat in .NET Aspire with Ollama: Quickstart Guide!](https://www.youtube.com/watch?v=jo1uyq-j26Y)
+
+* ![Build an AI Chat in .NET Aspire with Ollama: Deploy to Azure Guide!(./imgs/61youtubedeploy.png)
+
+    [Build an AI Chat in .NET Aspire with Ollama: Deploy to Azure Guide!](https://www.youtube.com/watch?v=J-Vy3pKaXS0)]
