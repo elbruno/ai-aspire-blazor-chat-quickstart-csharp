@@ -21,6 +21,9 @@ Check the resources section to find supporting videos with an overview of the pr
   * [Azure account setup](#azure-account-setup)
   * [Deploying with azd](#deploying-with-azd)
   * [Aspire deploy process overview](#aspire-deploy-process-overview)
+* [Next Steps](#next-steps)
+  * [Deploy Phi 3.5 in Azure AI](#use-slm-deploy-in-azure-ai)
+  * [Update to use Phi 3.5 in Azure](#use-slm-deploy-in-azure-ai)
 * [Guidance](#guidance)
   * [Costs](#costs)
   * [Security Guidelines](#security-guidelines)
@@ -284,6 +287,12 @@ We need to redeploy the ollama service with more system memory assigned. To modi
    * [Deploy with Azure Pipelines](https://github.com/Azure-Samples/azd-starter-bicep/blob/main/.azdo/pipelines/azure-dev.yml)
 
 2. In the AppHost project folder, run `azd pipeline config -e <environment name>` to configure the deployment pipeline to connect securely to Azure. An environment name is specified here to configure the pipeline with a different environment for isolation purposes. Run `azd env list` and `azd env set` to reselect the default environment after this step.
+
+## Next steps
+
+### Use SLM deploy in Azure AI
+
+**Coming soon**
 
 ## Guidance
 
