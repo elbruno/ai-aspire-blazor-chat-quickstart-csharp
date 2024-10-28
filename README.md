@@ -18,6 +18,9 @@ Check the resources section to find supporting videos with an overview of the pr
   * [GitHub Codespaces](#github-codespaces)
   * [VS Code Dev Containers](#vs-code-dev-containers)
 * [Deploying](#deploying)
+  * [Azure account setup](#azure-account-setup)
+  * [Deploying with azd](#deploying-with-azd)
+  * [Aspire deploy process overview](#aspire-deploy-process-overview)
 * [Guidance](#guidance)
   * [Costs](#costs)
   * [Security Guidelines](#security-guidelines)
@@ -124,7 +127,19 @@ From a Terminal window, open the folder with the clone of this repo. Run the fol
     * service webfrontend
     * Aspire Dashboard
 
-### Understanding the deploy with azd from the AppHost project
+    ![Console deploy complete including the endpoint URIs for service apiservice, service cache, service ollama service, service webfrontendand Aspire Dashboard](./imgs/15deployservicescomplete.png)
+
+    The Azure resource group now have the following services deployed:
+
+    ![Azure resource Group with all the services deployed](./imgs/16AzureResourceDeployComplete.png)
+
+### Aspire Deploy process overview
+
+The Azure Developer CLI (azd) has been extended to support deploying .NET Aspire projects. The following steps will help you walk through the process of deploying the current .NET Aspire project to Azure Container Apps using the Azure Developer CLI.
+
+* Explore how azd integration works with .NET Aspire projects
+* Provision and deploy resources on Azure for a .NET Aspire project using azd
+* Generate Bicep infrastructure and other template files using azd
 
 From a Terminal window, open the folder with the clone of this repo. Run the following commands.
 
